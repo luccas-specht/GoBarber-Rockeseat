@@ -7,14 +7,14 @@ import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
         <React.StrictMode>
           <App />
         </React.StrictMode>
-        <CreateGlobalStyle />
-      </ThemeProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+      <CreateGlobalStyle />
+    </ThemeProvider>
   </>,
   document.getElementById('root')
 );

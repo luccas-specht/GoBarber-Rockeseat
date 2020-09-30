@@ -1,6 +1,6 @@
 import React from 'react';
-import { RouterManager } from './routes';
+import { Routes } from './routes/router';
 
-const App: React.FC = () => <RouterManager />;
+const App: React.FC = () => <Routes />;
 
 export { App };
