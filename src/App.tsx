@@ -1,7 +1,5 @@
-import React from 'react';
+import React from "react";
 
-export const App: React.FC = () => {
-  return (
-    <h1>oi</h1>
-  )
-}
+const App: React.FC = () => <h1>oi</h1>;
+
+export { App };
