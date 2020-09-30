@@ -2,12 +2,14 @@ import React from 'react';
 import { ROUTERS, PublicRoute } from '../index';
 import { Switch } from 'react-router-dom';
 
-const RouterManager = () => {
+const RouterManager: React.FC = () => {
   const mapRoutes = () => {
     return ROUTERS.map((route) =>
       route.isPublic ? (
         <PublicRoute component={route.component} path={route.path} />
-      ) : null
+      ) : (
+        console.log('não')
+      )
     );
   };
   return <Switch>{mapRoutes()}</Switch>;

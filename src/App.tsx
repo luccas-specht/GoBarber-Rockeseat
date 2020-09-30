@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouterManager } from './routers';
+import { RouterManager } from './routes';
 
 const App: React.FC = () => <RouterManager />;
 
