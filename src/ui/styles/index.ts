@@ -1,2 +1,2 @@
-export { theme } from "./theme/theme";
-export { default } from "./global";
+export { theme } from "./themes/theme";
+export { CreateGlobalStyle } from "./global";
