@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SingUp: React.FC = () => {
-  return <h4>Sing PIROCA</h4>;
+  return <h1>Sing PIROCA</h1>;
 };
 
 export { SingUp };

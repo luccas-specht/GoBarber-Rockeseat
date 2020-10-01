@@ -1,4 +1,4 @@
-import { SingIn, SingUp } from '../ui/pages';
+import { SingIn, SingUp } from '../../ui/pages';
 
 const ROUTERS = {
   defaultRoute: {

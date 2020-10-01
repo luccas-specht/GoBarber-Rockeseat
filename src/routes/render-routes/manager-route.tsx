@@ -1,7 +1,7 @@
 import React from 'react';
-import { ROUTERS } from './paths';
+import { ROUTERS } from '../constants/routes';
 import { Switch, RouteProps } from 'react-router-dom';
-import { PublicRoute } from './render-routes/public-route.route';
+import { PublicRoute } from './public-route.';
 
 const Routes: React.FC<RouteProps> = () => (
   <Switch>
