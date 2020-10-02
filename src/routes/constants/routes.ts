@@ -1,14 +1,14 @@
-import { SingIn, SingUp } from '../../ui/pages';
+import { Login, SingUp } from '../../ui/pages';
 
 const ROUTERS = {
   defaultRoute: {
     path: () => '/',
-    component: SingIn,
+    component: Login,
   },
 
   login: {
-    path: () => '/sing-in',
-    component: SingIn,
+    path: () => '/login',
+    component: Login,
   },
 
   register: {

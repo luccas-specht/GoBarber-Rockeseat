@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { InputText, InputPassword, Button } from '../../../../components';
-import { Form, Title, CreateAccount } from './form-login.component.style';
-import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
+import { InputText, Button, InputPassword } from '../../../../components';
+import { Form, Title, BackToSingIn } from './form-sing-up.component.style';
+import { FiArrowLeft, FiMail, FiLock, FiUser } from 'react-icons/fi';
 
-const FormLogin: React.FC = () => {
+const FormSingUp: React.FC = () => {
   const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) =>
     setName(event.target.value);
+
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setEmail(event.target.value);
 
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(event.target.value);
@@ -19,14 +22,23 @@ const FormLogin: React.FC = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Title>Faça seu Login</Title>
+        <Title>Cadastra-se</Title>
         <InputText
-          icon={<FiMail size={20} />}
+          icon={<FiUser size={20} />}
           name='username-sing-Up'
           id='tx-username-sing-Up'
           placeholder='Nome'
           value={name}
           onChange={handleChangeName}
+        />
+
+        <InputText
+          icon={<FiMail size={20} />}
+          name='email-sing-up'
+          id='tx-email-sing-up'
+          placeholder='E-mail'
+          value={email}
+          onChange={handleChangeEmail}
         />
 
         <InputPassword
@@ -37,16 +49,16 @@ const FormLogin: React.FC = () => {
           value={password}
           onChange={handleChangePassword}
         />
-        <Button title='Entrar' />
-        <Link to='forgot'>Esqueci a minha senha</Link>
+
+        <Button title='Cadastrar' />
       </Form>
 
-      <CreateAccount to='sing-up'>
-        <FiLogIn />
-        Criar conta
-      </CreateAccount>
+      <BackToSingIn to='login'>
+        <FiArrowLeft />
+        Voltar para o login
+      </BackToSingIn>
     </>
   );
 };
 
-export { FormLogin };
+export { FormSingUp };

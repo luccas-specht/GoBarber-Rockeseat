@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Input } from './input-text.style';
+import { Container, Input } from './input-password.style';
 
 interface InputProps {
   id: string;
@@ -10,7 +10,7 @@ interface InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputText: React.FC<InputProps> = ({
+const InputPassword: React.FC<InputProps> = ({
   id,
   icon,
   name,
@@ -22,7 +22,7 @@ const InputText: React.FC<InputProps> = ({
     {icon && icon}
     <Input
       id={id}
-      type='text'
+      type='password'
       name={name}
       value={value}
       placeholder={placeholder}
@@ -31,4 +31,4 @@ const InputText: React.FC<InputProps> = ({
   </Container>
 );
 
-export { InputText };
+export { InputPassword };

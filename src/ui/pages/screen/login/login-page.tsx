@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container, Context, ImgBackground } from './sing-in.style';
+import { Container, Context, ImgBackground } from './login.style';
 import { FormLogin } from '../components';
 
 import logoGoBarber from '../../../assets/svg/logo-go-barber.svg';
 
-const SingIn: React.FC = () => (
+const Login: React.FC = () => (
   <Container>
     <Context>
       <img src={logoGoBarber} alt='Logo GoBarber' />
@@ -14,4 +14,4 @@ const SingIn: React.FC = () => (
   </Container>
 );
 
-export { SingIn };
+export { Login };
