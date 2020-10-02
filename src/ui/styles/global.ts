@@ -1,7 +1,7 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const CreateGlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap');
   * {
       padding: 0;
       margin: 0;
@@ -10,18 +10,19 @@ const CreateGlobalStyle = createGlobalStyle`
    }
 
  body {
-    background: ${(props) => props.theme.colors.background};
+    background: ${(props) => props.theme.colors.primary3};
     color: ${(props) => props.theme.colors.primary2};
     -webkit-font-smoothing: antialiased;
  }
 
  body, input, button {
-   font-family: 'Roboto Slab', serif;
-   font-size: 16px;
+  font: 1rem 'Roboto', sans-serif;
+   /* font-family: 'Roboto sans', serif;
+   font-size: 16px; */
   }
 
   h1, h2, h3, h4, h5, h6, strong {
-   font-weight: 500;
+   font-weight: 600;
   }
 
  button {

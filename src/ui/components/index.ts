@@ -1,2 +1,2 @@
 export { Button } from './button/button.component';
-export { Input } from './input/input.component';
+export { InputText } from './input-text/input-text.component';

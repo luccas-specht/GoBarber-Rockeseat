@@ -9,6 +9,7 @@ const Container = styled.div`
 
 const Context = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
   place-content: center;
   width: 100%;

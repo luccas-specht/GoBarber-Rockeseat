@@ -1,7 +1,12 @@
 import React from 'react';
+import { ButtonStyle } from './button.style';
 
-const Button: React.FC = () => {
-  return null;
+interface ButtonProps {
+  title: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ title }) => {
+  return <ButtonStyle> {title}</ButtonStyle>;
 };
 
 export { Button };
