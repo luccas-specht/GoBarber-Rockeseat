@@ -6,7 +6,11 @@ const Input = styled.input`
   border: 2px solid ${(props) => props.theme.colors.inputs};
   padding: 16px;
   width: 100%;
+  color: ${(props) => props.theme.colors.primary2};
 
+  &::placeholder {
+    color: ${(props) => props.theme.colors.grayHard};
+  }
   & + input {
     margin-top: 8px;
   }
