@@ -1,11 +1,11 @@
-import express, { response } from 'express';
+import express, { request, response } from 'express';
 
 const app = express();
 
 app.get('/', (request, response) => {
-  return response.json({ message: 'alterado e deu bom?!' });
+  return response.json({ message: 'hell gotss' });
 });
 
 app.listen(3333, () => {
-  console.log('oieeeeee');
+  console.log('server on');
 });

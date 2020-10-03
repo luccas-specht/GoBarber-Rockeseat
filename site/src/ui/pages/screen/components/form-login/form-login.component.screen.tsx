@@ -24,7 +24,7 @@ const FormLogin: React.FC = () => {
           icon={<FiMail size={20} />}
           name='username-sing-Up'
           id='tx-username-sing-Up'
-          placeholder='Nome'
+          placeholder='E-mail'
           value={name}
           onChange={handleChangeName}
         />
