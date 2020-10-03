@@ -24,7 +24,7 @@ const FormSingUp: React.FC = () => {
       <Form onSubmit={handleSubmit}>
         <Title>Cadastra-se</Title>
         <InputText
-          icon={<FiUser size={20} />}
+          icon={<FiUser size={22} />}
           name='username-sing-Up'
           id='tx-username-sing-Up'
           placeholder='Nome'

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { Container, Input } from './input-text.style';
-
 interface InputProps {
   id: string;
   icon?: any;
@@ -17,18 +16,30 @@ const InputText: React.FC<InputProps> = ({
   value,
   placeholder,
   onChange,
-}) => (
-  <Container>
-    {icon && icon}
-    <Input
-      id={id}
-      type='text'
-      name={name}
-      value={value}
-      placeholder={placeholder}
-      onChange={onChange}
-    />
-  </Container>
-);
+}) => {
+  const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [isFilled, setIsFilled] = useState<boolean>(false);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocus(false);
+    setIsFilled(!!value);
+  }, [value]);
+
+  return (
+    <Container isFilled={isFilled} isFocus={isFocus}>
+      {icon}
+      <Input
+        id={id}
+        type='text'
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        onFocus={() => setIsFocus(true)}
+        onBlur={handleInputBlur}
+      />
+    </Container>
+  );
+};
 
 export { InputText };

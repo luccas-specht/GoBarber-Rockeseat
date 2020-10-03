@@ -1,5 +1,5 @@
 import React from 'react';
-import { ROUTERS } from '../constants/routes';
+import { routers } from '../constants';
 import { Switch, RouteProps } from 'react-router-dom';
 import { PublicRoute } from './public-route.';
 
@@ -7,18 +7,18 @@ const Routes: React.FC<RouteProps> = () => (
   <Switch>
     <PublicRoute
       exact
-      path={ROUTERS.defaultRoute.path()}
-      component={ROUTERS.defaultRoute.component}
+      path={routers.defaultRoute.path}
+      component={routers.defaultRoute.component}
     />
     <PublicRoute
       exact
-      path={ROUTERS.login.path()}
-      component={ROUTERS.login.component}
+      path={routers.login.path}
+      component={routers.login.component}
     />
     <PublicRoute
       exact
-      path={ROUTERS.register.path()}
-      component={ROUTERS.register.component}
+      path={routers.register.path}
+      component={routers.register.component}
     />
   </Switch>
 );

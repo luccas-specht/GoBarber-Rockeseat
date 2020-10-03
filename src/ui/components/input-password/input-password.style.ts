@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+interface ContainerProps {
+  isFocus: boolean;
+  isFilled: boolean;
+}
 
-const Container = styled.div`
+const Container = styled.div<ContainerProps>`
   background: ${(props) => props.theme.colors.inputs};
   border-radius: 10px;
   border: 2px solid ${(props) => props.theme.colors.inputs};
@@ -16,6 +20,19 @@ const Container = styled.div`
   svg {
     margin-right: 16px;
   }
+
+  ${(props) =>
+    props.isFocus &&
+    css`
+      color: ${(props) => props.theme.colors.primary};
+      border-color: ${(props) => props.theme.colors.primary};
+    `}
+
+  ${(props) =>
+    props.isFilled &&
+    css`
+      color: ${(props) => props.theme.colors.primary};
+    `}
 `;
 
 const Input = styled.input`
