@@ -5,7 +5,7 @@ class Appointment {
   id: string;
 
   @Column('varchar')
-  provider: string;
+  provider_id: string;
 
   @Column('timestamp with time zone')
   date: Date;
