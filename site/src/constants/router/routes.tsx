@@ -11,21 +11,24 @@ const components = {
   singUp: SingUp,
 };
 
-const routers = {
-  defaultRoute: {
+const routers = [
+  {
     path: paths.default(),
     component: components.login,
+    isPublic: true,
   },
 
-  login: {
+  {
     path: paths.login(),
     component: components.login,
+    isPublic: true,
   },
 
-  register: {
+  {
     path: paths.SingUp(),
     component: components.singUp,
+    isPublic: true,
   },
-};
+];
 
 export { routers };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, RouteProps } from 'react-router-dom';
 
-const PublicRoute = ({ path, component }: RouteProps) => {
+const PublicRoute: React.FC<RouteProps> = ({ path, component }) => {
   return <Route path={path} component={component} />;
 };
 
