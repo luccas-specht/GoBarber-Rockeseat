@@ -1,9 +1,9 @@
 import React from 'react';
 import { routers } from '../constants';
 import { Switch, RouteProps } from 'react-router-dom';
-import { PublicRoute } from './public-route.';
+import { PublicRoute } from './public-route';
 
-const Routes: React.FC<RouteProps> = () => {
+const RouteManger: React.FC<RouteProps> = () => {
   const mapRoutes = () => {
     return routers.map(
       (route, key) =>
@@ -20,4 +20,4 @@ const Routes: React.FC<RouteProps> = () => {
   return <Switch>{mapRoutes()}</Switch>;
 };
 
-export { Routes };
+export { RouteManger };
