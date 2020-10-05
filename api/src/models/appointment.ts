@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Users } from './users';
 @Entity('appointments')
 class Appointment {
   @PrimaryGeneratedColumn('uuid')
@@ -6,6 +13,10 @@ class Appointment {
 
   @Column('varchar')
   provider_id: string;
+
+  @ManyToOne(() => Users)
+  @JoinColumn({ name: 'provider_id' })
+  provider: Users;
 
   @Column('timestamp with time zone')
   date: Date;
