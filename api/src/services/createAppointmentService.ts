@@ -4,12 +4,12 @@ import { Appointment } from '../models/appointment';
 import { AppointmentRepository } from '../repositories/appointment';
 interface PropsCreateAppointment {
   date: Date;
-  provider: string;
+  provider_id: string;
 }
 class CreateAppointmentService {
   public async execute({
     date,
-    provider,
+    provider_id,
   }: PropsCreateAppointment): Promise<Appointment> {
     const appointmentsRepository = getCustomRepository(AppointmentRepository);
     const appointmentDate = startOfHour(date);
@@ -21,7 +21,7 @@ class CreateAppointmentService {
     if (findAppointmentInSame) throw Error('horário está ocupado');
 
     const appointment = appointmentsRepository.create({
-      provider,
+      provider_id,
       date: appointmentDate,
     });
 
