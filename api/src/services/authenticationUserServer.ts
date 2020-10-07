@@ -2,17 +2,15 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { Users } from '../models/users';
-
+import authConfig from '../config/auth';
 interface PropsAuthenticationService {
   email: string;
   password: string;
 }
-
 interface AuthReponse {
   newUser: Omit<Users, 'password'>;
   token: string;
 }
-
 class AuthenticationService {
   async execute({
     email,
@@ -29,9 +27,9 @@ class AuthenticationService {
 
     if (!passwordMatched) throw Error('Email ou senha incorreto');
 
-    const token = sign({}, 'iqjw82jund93h9n9qsh1aisjiajs20-2njnsdn27', {
-      subject: user.id,
-      expiresIn: '1d',
+    const token = sign({}, authConfig.jwt.secret, {
+      subject: newUser.id,
+      expiresIn: authConfig.jwt.expiresIn,
     });
 
     return {
