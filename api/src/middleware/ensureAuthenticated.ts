@@ -2,6 +2,11 @@ import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import authConfig from '../config/auth';
 
+interface TokenPayLoad {
+  iat: number;
+  exp: number;
+  sub: string;
+}
 const ensureAuthenticated = (
   request: Request,
   response: Response,
@@ -14,6 +19,12 @@ const ensureAuthenticated = (
   const [, token] = authHeader.split(' ');
   try {
     const decoded = verify(token, authConfig.jwt.secret);
+
+    const { sub } = decoded as TokenPayLoad;
+
+    request.user = {
+      id: sub,
+    };
     return next();
   } catch {
     throw new Error('token invalido');
