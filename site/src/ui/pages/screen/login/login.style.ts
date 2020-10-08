@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import singInImg from '../../../assets/images/sing-in-background.png';
 
 const Container = styled.div`
@@ -22,4 +22,23 @@ const ImgBackground = styled.div`
   background-size: cover;
 `;
 
-export { Container, Context, ImgBackground };
+const appearFromLeft = keyframes`
+  from{
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const AnimationContext = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: ${appearFromLeft} 1.2s;
+`;
+
+export { Container, Context, ImgBackground, AnimationContext };

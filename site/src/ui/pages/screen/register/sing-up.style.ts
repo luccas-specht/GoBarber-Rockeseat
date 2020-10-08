@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import singInImg from '../../../assets/images/sing-up-background.png';
 
 const Container = styled.div`
@@ -16,10 +16,29 @@ const Context = styled.div`
   max-width: 700px;
 `;
 
+const appearFromLeft = keyframes`
+  from{
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const AnimationContext = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: ${appearFromLeft} 1.2s;
+`;
+
 const ImgBackground = styled.div`
   flex: 1;
   background: url(${singInImg}) no-repeat center;
   background-size: cover;
 `;
 
-export { Container, Context, ImgBackground };
+export { Container, Context, ImgBackground, AnimationContext };

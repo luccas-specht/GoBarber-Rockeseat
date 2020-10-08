@@ -7,13 +7,12 @@ interface TokenPayLoad {
   exp: number;
   sub: string;
 }
-const ensureAuthenticated = (
+export default function ensureAuthenticated(
   request: Request,
   response: Response,
   next: NextFunction
-): void => {
+): void {
   const authHeader = request.headers.authorization;
-
   if (!authHeader) throw new Error('token JWT está faltando');
 
   const [, token] = authHeader.split(' ');
@@ -29,6 +28,4 @@ const ensureAuthenticated = (
   } catch {
     throw new Error('token invalido');
   }
-};
-
-export { ensureAuthenticated };
+}
