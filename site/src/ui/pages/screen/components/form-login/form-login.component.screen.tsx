@@ -34,9 +34,11 @@ const FormLogin: React.FC = () => {
   const login = async () => {
       const response = await authentication(email, password);
       if (response.status === 400) {
-        history.push('./naodeu');
+        console.log('aqui não deu:', response)
+       
       } else {
-        history.push('./forgot');
+        console.log('aqui deu', response)
+       
       }
   }
   return (
