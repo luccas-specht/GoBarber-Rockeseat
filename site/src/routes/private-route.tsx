@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
-const PrivateRoute: React.FC<RouteProps> = ({ children, path }) => {
+const PrivateRoute = ({ children, path }: RouteProps) => {
   const isToken = localStorage.getItem('@token');
 
   const checkToken = () => {
