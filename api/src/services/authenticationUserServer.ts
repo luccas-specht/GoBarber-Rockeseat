@@ -2,38 +2,39 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { Users } from '../models/users';
+
 import authConfig from '../config/auth';
+import { AppError } from '../errors/appError';
 interface PropsAuthenticationService {
   email: string;
   password: string;
 }
 interface AuthReponse {
-  newUser: Omit<Users, 'password'>;
+  // user: Omit<Users, 'password'>;
+  user: Users;
   token: string;
 }
 class AuthenticationService {
-  async execute({
-    email,
-    password,
-  }: PropsAuthenticationService): Promise<AuthReponse> {
+  async execute({ email, password }: PropsAuthenticationService): Promise<AuthReponse> {
     const usersRepository = getRepository(Users);
 
     const user = await usersRepository.findOne({ where: { email } });
 
-    if (!user) throw Error('Email ou senha incorreto');
+    if (!user) throw new AppError('Email ou senha incorreto', 401);
 
-    const newUser = { id: user.id, name: user.name, email: user.email };
     const passwordMatched = await compare(password, user.password);
 
-    if (!passwordMatched) throw Error('Email ou senha incorreto');
+    if (!passwordMatched) throw new AppError('Email ou senha incorreto', 401);
 
-    const token = sign({}, authConfig.jwt.secret, {
-      subject: newUser.id,
-      expiresIn: authConfig.jwt.expiresIn,
+    const { secret, expiresIn } = authConfig.jwt;
+
+    const token = sign({}, secret, {
+      subject: user.id,
+      expiresIn: expiresIn,
     });
 
     return {
-      newUser,
+      user,
       token,
     };
   }

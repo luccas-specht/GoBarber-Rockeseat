@@ -1,19 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
-import authConfig from '../config/auth';
 
+import authConfig from '../config/auth';
+import { AppError } from '../errors/appError';
 interface TokenPayLoad {
   iat: number;
   exp: number;
   sub: string;
 }
-export default function ensureAuthenticated(
-  request: Request,
-  response: Response,
-  next: NextFunction
-): void {
+function ensureAuthenticated(request: Request, response: Response, next: NextFunction): void {
+
   const authHeader = request.headers.authorization;
-  if (!authHeader) throw new Error('token JWT está faltando');
+
+  if (!authHeader) throw new AppError('token JWT está faltando', 401);
 
   const [, token] = authHeader.split(' ');
   try {
@@ -25,7 +24,10 @@ export default function ensureAuthenticated(
       id: sub,
     };
     return next();
+
   } catch {
-    throw new Error('token invalido');
+    throw new AppError('token invalido', 401);
   }
 }
+
+export default ensureAuthenticated
