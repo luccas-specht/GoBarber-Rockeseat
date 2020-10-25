@@ -3,10 +3,10 @@ import { useAxios } from '../api/use-axios.hook';
 const axios = useAxios('http://localhost:3333')
 
 const useAuth = () => {
-    const authentication = async ( email: string, password: string ) => {
+    const authentication = async (email: string, password: string) => {
         try {
             const response = await axios.post('/auth', {
-                email: email, 
+                email: email,
                 password: password
             })
             return response.data;
@@ -14,7 +14,7 @@ const useAuth = () => {
             return error.response;
         }
     }
-    return {authentication}
+    return { authentication }
 }
 
 export { useAuth }

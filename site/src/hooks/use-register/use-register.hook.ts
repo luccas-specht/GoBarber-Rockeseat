@@ -3,11 +3,11 @@ import { useAxios } from '../api/use-axios.hook';
 const axios = useAxios('http://localhost:3333')
 
 const useRegister = () => {
-    const register = async (name: string, email: string, password: string ) => {
+    const register = async (name: string, email: string, password: string) => {
         try {
             const response = await axios.post('/users', {
                 name: name,
-                email: email, 
+                email: email,
                 password: password
             })
             return response.data;
@@ -15,7 +15,7 @@ const useRegister = () => {
             return error.response;
         }
     }
-    return {register}
+    return { register }
 }
 
 export { useRegister }

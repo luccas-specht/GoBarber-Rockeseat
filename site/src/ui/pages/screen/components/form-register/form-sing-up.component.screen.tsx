@@ -7,7 +7,7 @@ import { InputText, Button, InputPassword } from '../../../../components';
 import { Form, Title, BackToSingIn } from './form-sing-up.component.style';
 import { FiArrowLeft, FiMail, FiLock, FiUser } from 'react-icons/fi';
 
-const FormSingUp: React.FC = () => {
+const FormRegister = () => {
   const [userName, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -18,32 +18,32 @@ const FormSingUp: React.FC = () => {
   const handleChangeUserName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(event.target.value);
   }
-    
+
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   }
-    
+
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   }
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    if (!userName || !email|| !password  ) {
+    if (!userName || !email || !password) {
       alert('preencha tudo ')
-    }else{
+    } else {
       rigistered();
     }
   }
 
   const rigistered = async () => {
-    const response = await register(userName, email, password );
+    const response = await register(userName, email, password);
     if (response.status === 400) {
       alert('não deu cpx já existe assim')
     } else {
       history.push('./login');
     }
-}
+  }
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -86,4 +86,4 @@ const FormSingUp: React.FC = () => {
   );
 };
 
-export { FormSingUp };
+export { FormRegister };

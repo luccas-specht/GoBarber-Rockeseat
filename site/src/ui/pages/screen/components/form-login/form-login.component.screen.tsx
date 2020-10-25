@@ -1,45 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+
+import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
+
 import { useAuth } from '../../../../../hooks'
 
 import { InputText, InputPassword, Button } from '../../../../components';
 import { Form, Title, CreateAccount } from './form-login.component.style';
 
-import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
-
-const FormLogin: React.FC = () => {
+const FormLogin = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  
+
   const { authentication } = useAuth();
   const history = useHistory();
 
   const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   }
-    
+
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   }
-    
+
   const handleSubmit = (event: any) => {
     event.preventDefault()
     if (!email || !password) {
-        alert('Você precisa preencher todos os campos');
+      alert('Você precisa preencher todos os campos');
     } else {
-        login();
+      login();
     }
   }
 
   const login = async () => {
-      const response = await authentication(email, password);
-      if (response.status === 400) {
-        console.log('aqui não deu:', response)
-       
-      } else {
-        console.log('aqui deu', response)
-       
-      }
+    const response = await authentication(email, password);
+    if (response.status === 400) {
+      console.log('aqui não deu:', response)
+
+    } else {
+      console.log('aqui deu', response)
+
+    }
   }
   return (
     <>

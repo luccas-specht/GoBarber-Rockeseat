@@ -1,6 +1,7 @@
 import React from 'react';
-import { routers } from '../constants';
 import { Switch, RouteProps } from 'react-router-dom';
+
+import { routers } from '../constants';
 import { PublicRoute } from './public-route';
 
 const RouteManger: React.FC<RouteProps> = () => {
@@ -15,7 +16,7 @@ const RouteManger: React.FC<RouteProps> = () => {
             component={route.component}
           />
         )
-    );
+    )
   };
   return <Switch>{mapRoutes()}</Switch>;
 };

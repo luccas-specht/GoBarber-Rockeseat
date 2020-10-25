@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react';
 import { Container, Input } from './input-password.style';
-
 interface InputProps {
   id: string;
   icon?: any;

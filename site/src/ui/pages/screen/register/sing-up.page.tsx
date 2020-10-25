@@ -5,17 +5,18 @@ import {
   ImgBackground,
   AnimationContext,
 } from './sing-up.style';
-import { FormSingUp } from '../components';
+import { FormRegister } from '../components';
 
 import logoGoBarber from '../../../assets/svg/logo-go-barber.svg';
 
-const SingUp: React.FC = () => (
+const SingUp = () => (
   <Container>
     <ImgBackground />
     <Context>
       <AnimationContext>
         <img src={logoGoBarber} alt='Logo GoBarber' />
-        <FormSingUp />
+
+        <FormRegister />
       </AnimationContext>
     </Context>
   </Container>

@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export function useAxios(baseURL: string, headers?: any) {
-    return axios.create({baseURL, headers})
+    return axios.create({ baseURL, headers })
 }
