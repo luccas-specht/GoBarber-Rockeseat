@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Image, ScrollView } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -21,18 +21,17 @@ const Register = () => {
     const formRef = useRef<FormHandles>(null)
     const navigation = useNavigation();
     
-    const [isFocus, setIsFocus] = useState<boolean>();
-
     const handleRegister = useCallback((data: object)=>{
         console.log('da', data)
     },[])
+    
     return (
         <>
         <ScrollView 
             keyboardShouldPersistTaps='handled'
             contentContainerStyle={{ flex: 1 }}
         >
-             <Container isFocus={isFocus}>
+             <Container>
                 <Image source={logoGoBarber} />
                 <Title>
                      Crie sua conta
@@ -47,7 +46,6 @@ const Register = () => {
                      icon='user'
                      name='username'
                      placeholder='Nome'
-                     onFocus={(focus: boolean) => setIsFocus(focus)}
                      />
 
                     <Input
@@ -55,9 +53,9 @@ const Register = () => {
                      name='emailRegister'
                      placeholder='E-mail'
                      autoCorrect={false}
+                     autoCompleteType='off'
                      autoCapitalize='none'
                      keyboardType='email-address'
-                     onFocus={(focus: boolean) => setIsFocus(focus)}
                      />
 
                     <Input
@@ -68,7 +66,6 @@ const Register = () => {
                      textContentType='newPassword'
                      secureTextEntry
                      onSubmitEditing={()=>{formRef.current?.submitForm()}}
-                     onFocus={(focus: boolean) => setIsFocus(focus)}
                      />
                 </Form>
                  

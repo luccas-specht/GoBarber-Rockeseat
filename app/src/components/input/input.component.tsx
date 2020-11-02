@@ -11,12 +11,11 @@ import {
 interface PropsInput extends TextInputProps{
     name: string;
     icon: string;
-    onFocus: any;
 }
 interface InputValueRef extends TextInputProps{
  value: string;
 }
-const Input = ({ name, icon, onFocus, ...rest }: PropsInput)=>  {
+const Input = ({ name, icon, ...rest }: PropsInput)=>  {
   const inputElementRef = useRef<any>(null)
 
   const {registerField, defaultValue='', fieldName, error} = useField(name)
@@ -65,8 +64,8 @@ const Input = ({ name, icon, onFocus, ...rest }: PropsInput)=>  {
             onChangeText={(value) => {
               inputValueRef.current.value = value
             } }
-            onFocus={(e) => { onFocus(true), handleInputFocus() }}
-            onBlur={(e) => { onFocus(false), handleInputBlur() }}
+            onFocus={() => { handleInputFocus() }}
+            onBlur={() => { handleInputBlur() }}
           {...rest}
           />
       </Container>

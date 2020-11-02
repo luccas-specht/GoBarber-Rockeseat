@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Image, ScrollView } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
@@ -22,19 +22,18 @@ import logoGoBarber from '../../assets/img/logo.png';
 const Login = () => {
     const formRef = useRef<FormHandles>(null)
     const navigation = useNavigation();
-    
-    const [isFocus, setIsFocus] = useState<boolean>();
-
+   
     const handleLogin = useCallback((data: object)=>{
         console.log('da', data)
     },[])
+
     return (
         <>
         <ScrollView 
             keyboardShouldPersistTaps='handled'
             contentContainerStyle={{ flex: 1 }}
         >
-             <Container isFocus={isFocus}>
+             <Container >
                 <Image source={logoGoBarber} />
                 <Title>
                      Crie sua conta
@@ -49,9 +48,9 @@ const Login = () => {
                     name='email'
                     placeholder='E-mail'
                     autoCorrect={false}
+                    autoCompleteType='off'
                     autoCapitalize='none'
                     keyboardType='email-address'
-                    onFocus={(focus: boolean) => setIsFocus(focus)}
                     />
                    
                    <Input
@@ -60,7 +59,6 @@ const Login = () => {
                     placeholder='Senha'
                     secureTextEntry
                     returnKeyType='send'
-                    onFocus={(focus: boolean) => setIsFocus(focus)}
                     onSubmitEditing={()=>{formRef.current?.submitForm()}}
                     />
                 </Form>
