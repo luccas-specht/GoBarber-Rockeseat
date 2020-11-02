@@ -43,6 +43,7 @@ const Register = () => {
                  onSubmit={handleRegister}
                 >    
                     <Input
+                     autoCapitalize='words'
                      icon='user'
                      name='username'
                      placeholder='Nome'
@@ -53,6 +54,9 @@ const Register = () => {
                      icon='mail'
                      name='emailRegister'
                      placeholder='E-mail'
+                     autoCorrect={false}
+                     autoCapitalize='none'
+                     keyboardType='email-address'
                      onFocus={(focus: boolean) => setIsFocus(focus)}
                      />
 
@@ -60,6 +64,10 @@ const Register = () => {
                      icon='lock'
                      name='passwordRegister'
                      placeholder='Senha'
+                     returnKeyType='send'
+                     textContentType='newPassword'
+                     secureTextEntry
+                     onSubmitEditing={()=>{formRef.current?.submitForm()}}
                      onFocus={(focus: boolean) => setIsFocus(focus)}
                      />
                 </Form>

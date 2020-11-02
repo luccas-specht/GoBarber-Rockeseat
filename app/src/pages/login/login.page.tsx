@@ -48,6 +48,9 @@ const Login = () => {
                     icon='mail'
                     name='email'
                     placeholder='E-mail'
+                    autoCorrect={false}
+                    autoCapitalize='none'
+                    keyboardType='email-address'
                     onFocus={(focus: boolean) => setIsFocus(focus)}
                     />
                    
@@ -55,7 +58,10 @@ const Login = () => {
                     icon='lock'
                     name='password'
                     placeholder='Senha'
+                    secureTextEntry
+                    returnKeyType='send'
                     onFocus={(focus: boolean) => setIsFocus(focus)}
+                    onSubmitEditing={()=>{formRef.current?.submitForm()}}
                     />
                 </Form>
                 <Button
