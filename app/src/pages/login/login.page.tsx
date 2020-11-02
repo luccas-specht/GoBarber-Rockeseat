@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { Image, ScrollView } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
+
+import { Form } from '@unform/mobile'
+import { FormHandles } from '@unform/core';
 
 import { Button, Input } from '../../components';
 
@@ -17,9 +20,14 @@ import {  Container,
 import logoGoBarber from '../../assets/img/logo.png';
 
 const Login = () => {
+    const formRef = useRef<FormHandles>(null)
     const navigation = useNavigation();
+    
     const [isFocus, setIsFocus] = useState<boolean>();
 
+    const handleLogin = useCallback((data: object)=>{
+        console.log('da', data)
+    },[])
     return (
         <>
         <ScrollView 
@@ -32,22 +40,26 @@ const Login = () => {
                      Crie sua conta
                 </Title>
             
-                <Input
-                 icon='mail'
-                 name='email'
-                 placeholder='E-mail'
-                 onFocus={(focus: boolean) => setIsFocus(focus)}
-                 />
-               
-                <Input
-                 icon='lock'
-                 name='password'
-                 placeholder='Senha'
-                 onFocus={(focus: boolean) => setIsFocus(focus)}
-                 />
-
+                <Form 
+                 ref={formRef}
+                 onSubmit={handleLogin}
+                >    
+                   <Input
+                    icon='mail'
+                    name='email'
+                    placeholder='E-mail'
+                    onFocus={(focus: boolean) => setIsFocus(focus)}
+                    />
+                   
+                   <Input
+                    icon='lock'
+                    name='password'
+                    placeholder='Senha'
+                    onFocus={(focus: boolean) => setIsFocus(focus)}
+                    />
+                </Form>
                 <Button
-                 onPress={()=>{console.log('oiii')}}
+                 onPress={()=>{formRef.current?.submitForm()}}
                  >
                     Entrar
                  </Button>
