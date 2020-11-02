@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { TextInputProps } from 'react-native';
 
 import { useField } from '@unform/core';
@@ -8,7 +8,6 @@ import {
     TextInput, 
     Icon
  } from './input.style';
-import { Value } from 'react-native-reanimated';
 interface PropsInput extends TextInputProps{
     name: string;
     icon: string;
@@ -21,8 +20,19 @@ const Input = ({ name, icon, onFocus, ...rest }: PropsInput)=>  {
   const inputElementRef = useRef<any>(null)
 
   const {registerField, defaultValue='', fieldName, error} = useField(name)
-  
   const inputValueRef = useRef<InputValueRef>({value: defaultValue})
+
+  const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [isFilled, setIsFilled] = useState<boolean>(false);
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocus(true);
+  }, []);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocus(false);
+    setIsFilled(!!inputValueRef.current.value);
+  }, []);
 
   useEffect(()=>{
     registerField({
@@ -41,12 +51,13 @@ const Input = ({ name, icon, onFocus, ...rest }: PropsInput)=>  {
   },[fieldName, registerField])
 
   return (
-      <Container>
+      <Container isFocus={isFocus}>
           <Icon 
             name={icon} 
             size={20} 
+            isFocus={isFocus}
+            isFilled={isFilled}
           />
-
           <TextInput
             placeholderTextColor='#666360'
             ref={inputElementRef}
@@ -54,8 +65,8 @@ const Input = ({ name, icon, onFocus, ...rest }: PropsInput)=>  {
             onChangeText={(value) => {
               inputValueRef.current.value = value
             } }
-            onFocus={(e) => onFocus(true)}
-            onBlur={(e) => onFocus(false)}
+            onFocus={(e) => { onFocus(true), handleInputFocus() }}
+            onBlur={(e) => { onFocus(false), handleInputBlur() }}
           {...rest}
           />
       </Container>

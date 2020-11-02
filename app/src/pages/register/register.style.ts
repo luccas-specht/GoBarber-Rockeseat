@@ -7,7 +7,7 @@ const Container = styled.View<PropsContainer>`
     flex: 1;
     align-items: center;
     justify-content: center;
-    padding: 0 30px ${(props) => (props.isFocus ? '150px' : '40px')};
+    padding: 0 30px ${(props) => (props.isFocus && '130px')};
 `;
 
 const Title = styled.Text`

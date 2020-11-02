@@ -1,16 +1,30 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 import Feather from 'react-native-vector-icons/Feather';
+interface PropsContainer {
+    isFocus: boolean;
+}
+interface PropsIcon {
+    isFilled: boolean;
+    isFocus: boolean;
+}
 
-const Container = styled.View`
+const Container = styled.View<PropsContainer>`
     width: 100%;
     height: 60px;
     padding: 0 16px;
     background: #232129;
-    border-radius: 10px;
     margin-bottom: 10px;
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: #232129;
+   
     flex-direction: row;
     align-items: center;
+
+    ${(props) => props.isFocus && css`
+        border-color: #ff9000;
+    `};
 `;
 
 const TextInput = styled.TextInput`
@@ -20,10 +34,13 @@ const TextInput = styled.TextInput`
     font-family: 'Roboto-Regular';
 `;
 
-const Icon = styled(Feather)`
+const Icon = styled(Feather)<PropsIcon>`
     margin-right: 16px;
-    /* color={isFocus? '#ff9000': '#666360'} */
     color: #666360;
+
+    ${(props) => props.isFocus || props.isFilled ?
+      css`color: #ff9000;` : css`color: #666360;` 
+    };
 `;
 
 
