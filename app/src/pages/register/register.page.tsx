@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile'
 import { FormHandles } from '@unform/core';
 
+import * as Yup from 'yup'
+
 import { Button, Input } from '../../components';
 
 import {  Container, 
@@ -21,10 +23,22 @@ const Register = () => {
     const formRef = useRef<FormHandles>(null)
     const navigation = useNavigation();
     
-    const handleRegister = useCallback((data: object)=>{
-        console.log('da', data)
+    const onSubmit = useCallback(async(data: object) =>{
+        try{
+            const validations = Yup.object().shape({
+                name: Yup.string().required('erro'),
+                email: Yup.string().email().required('erro'),
+                password: Yup.string().min(6).required('eroo')
+            });
+            await validations.validate(data, {
+                abortEarly: false
+            })
+            console.log('oiiii')
+        } catch(error){
+            console.log(error)
+        }
     },[])
-    
+
     return (
         <>
         <ScrollView 
@@ -39,7 +53,7 @@ const Register = () => {
 
                 <Form 
                  ref={formRef}
-                 onSubmit={handleRegister}
+                 onSubmit={onSubmit}
                 >    
                     <Input
                      autoCapitalize='words'
