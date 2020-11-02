@@ -6,15 +6,22 @@ import { Container, TextInput, Icon } from './input.style';
 interface PropsInput extends TextInputProps{
     name: string;
     icon: string;
+    onFocus: any;
 }
 
-const Input = ({ name, icon, ...rest }: PropsInput)=> (
+const Input = ({ name, icon, onFocus, ...rest }: PropsInput)=> (
     <Container>
-        <Icon name={icon} size={20} color='#666360'/>
+        <Icon 
+          name={icon} 
+          size={20} 
+          color='#666360'
+        />
 
         <TextInput
-        placeholderTextColor='#666360'
-       {...rest}
+          placeholderTextColor='#666360'
+          onFocus={(e) => onFocus(true)}
+          onBlur={(e) => onFocus(false)}
+        {...rest}
         />
     </Container>
 );

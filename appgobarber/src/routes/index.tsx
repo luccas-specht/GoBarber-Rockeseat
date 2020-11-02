@@ -11,6 +11,7 @@ const AuthRoutes: React.FC = () => (
             headerShown: false,
             cardStyle: { backgroundColor: '#312e38' }
         }}>
+            
         <Auth.Screen name='Login' component={Login} />
         <Auth.Screen name='Register' component={Register} />
     </Auth.Navigator>
