@@ -22,6 +22,8 @@ const TextInput = styled.TextInput`
 
 const Icon = styled(Feather)`
     margin-right: 16px;
+    /* color={isFocus? '#ff9000': '#666360'} */
+    color: #666360;
 `;
 
 

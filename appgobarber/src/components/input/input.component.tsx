@@ -14,7 +14,6 @@ const Input = ({ name, icon, onFocus, ...rest }: PropsInput)=> (
         <Icon 
           name={icon} 
           size={20} 
-          color='#666360'
         />
 
         <TextInput
