@@ -1,6 +1,6 @@
 import { useAxios } from '../api/use-axios.hook';
 
-const axios = useAxios('http://10.0.2.2:3333/')
+const axios = useAxios();
 
 const useRegister = () => {
     const register = async (name: string, email: string, password: string) => {
