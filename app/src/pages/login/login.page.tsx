@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { Image, ScrollView, Alert } from 'react-native';
+import { Image, ScrollView } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
@@ -51,7 +51,6 @@ const Login = () => {
 
             return;
           }
-            Alert.alert('erro no login', 'ocorreu erro ai cpx' );
         }
     },[])
 

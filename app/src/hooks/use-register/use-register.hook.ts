@@ -1,0 +1,21 @@
+import { useAxios } from '../api/use-axios.hook';
+
+const axios = useAxios('http://10.0.2.2:3333/')
+
+const useRegister = () => {
+    const register = async (name: string, email: string, password: string) => {
+        try {
+            const response = await axios.post('users', {
+                name: name,
+                email: email,
+                password: password
+            })
+            return response.data;
+        } catch (error) {
+            return error.response;
+        }
+    }
+    return { register }
+}
+
+export { useRegister }

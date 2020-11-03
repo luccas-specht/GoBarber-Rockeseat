@@ -10,6 +10,8 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup'
 import { getValidationsErros } from '../../utils/getValidationErrors'
 
+import { useRegister } from '../../hooks';
+
 import { Button, Input } from '../../components';
 
 import {  Container, 
@@ -27,6 +29,7 @@ interface RegisterFormData {
 
 const Register = () => {
     const formRef = useRef<FormHandles>(null)
+    const { register } = useRegister();
     const navigation = useNavigation();
     
     const onSubmit = useCallback(async(data: RegisterFormData): Promise<void> => {
@@ -43,6 +46,7 @@ const Register = () => {
                 abortEarly: false
             })
 
+           onRegister(data);
         } catch(err){
           if(err instanceof Yup.ValidationError){
             const erros = getValidationsErros(err);
@@ -53,6 +57,16 @@ const Register = () => {
           }
         }
     },[])
+
+    const onRegister = async (data: RegisterFormData) => {
+        const response = await register(data.name, data.email, data.password);
+        console.log('response', response)
+        if (response.status === 400) {
+          console.log('não deu')
+        } else {
+        navigation.navigate('Login')
+        }
+      }
 
     return (
         <>
