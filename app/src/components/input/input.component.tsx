@@ -50,7 +50,7 @@ const Input = ({ name, icon, ...rest }: PropsInput)=>  {
   },[fieldName, registerField])
 
   return (
-      <Container isFocus={isFocus}>
+      <Container isFocus={isFocus} isError={!!error}>
           <Icon 
             name={icon} 
             size={20} 

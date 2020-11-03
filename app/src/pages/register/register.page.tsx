@@ -8,6 +8,7 @@ import { Form } from '@unform/mobile'
 import { FormHandles } from '@unform/core';
 
 import * as Yup from 'yup'
+import { getValidationsErros } from '../../utils/getValidationErrors'
 
 import { Button, Input } from '../../components';
 
@@ -18,24 +19,38 @@ import {  Container,
         } from './register.style';
 
 import logoGoBarber from '../../assets/img/logo.png';
+interface RegisterFormData {
+    name: string;
+    email: string;
+    password: string;
+}
 
 const Register = () => {
     const formRef = useRef<FormHandles>(null)
     const navigation = useNavigation();
     
-    const onSubmit = useCallback(async(data: object) =>{
+    const onSubmit = useCallback(async(data: RegisterFormData): Promise<void> => {
         try{
-            const validations = Yup.object().shape({
-                name: Yup.string().required('erro'),
-                email: Yup.string().email().required('erro'),
-                password: Yup.string().min(6).required('eroo')
+            formRef.current?.setErrors({});
+
+            const schema = Yup.object().shape({
+                name: Yup.string().required(),
+                email: Yup.string().required().email(),
+                password: Yup.string().min(6)
             });
-            await validations.validate(data, {
+            
+            await schema.validate(data, {
                 abortEarly: false
             })
-            console.log('oiiii')
-        } catch(error){
-            console.log(error)
+
+        } catch(err){
+          if(err instanceof Yup.ValidationError){
+            const erros = getValidationsErros(err);
+            
+            formRef.current?.setErrors(erros);
+
+            return;
+          }
         }
     },[])
 
@@ -58,13 +73,13 @@ const Register = () => {
                     <Input
                      autoCapitalize='words'
                      icon='user'
-                     name='username'
+                     name='name'
                      placeholder='Nome'
                      />
 
                     <Input
                      icon='mail'
-                     name='emailRegister'
+                     name='email'
                      placeholder='E-mail'
                      autoCorrect={false}
                      autoCompleteType='off'
@@ -74,7 +89,7 @@ const Register = () => {
 
                     <Input
                      icon='lock'
-                     name='passwordRegister'
+                     name='password'
                      placeholder='Senha'
                      returnKeyType='send'
                      textContentType='newPassword'

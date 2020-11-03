@@ -1,11 +1,14 @@
 import React, { useCallback, useRef } from 'react';
-import { Image, ScrollView } from 'react-native';
+import { Image, ScrollView, Alert } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 
 import { Form } from '@unform/mobile'
 import { FormHandles } from '@unform/core';
+
+import * as Yup from 'yup'
+import { getValidationsErros } from '../../utils/getValidationErrors'
 
 import { Button, Input } from '../../components';
 
@@ -18,13 +21,38 @@ import {  Container,
         } from './login.style';
 
 import logoGoBarber from '../../assets/img/logo.png';
+interface LoginFormData {
+    email: string;
+    password: string;
+}
 
 const Login = () => {
     const formRef = useRef<FormHandles>(null)
     const navigation = useNavigation();
    
-    const handleLogin = useCallback((data: object)=>{
-        console.log('da', data)
+    const onSubmit = useCallback(async(data: LoginFormData): Promise<void> => {
+        try{
+            formRef.current?.setErrors({});
+
+            const schema = Yup.object().shape({
+                email: Yup.string().required().email(),
+                password: Yup.string().min(6)
+            });
+            
+            await schema.validate(data, {
+                abortEarly: false
+            })
+
+        } catch(err){
+          if(err instanceof Yup.ValidationError){
+            const erros = getValidationsErros(err);
+            
+            formRef.current?.setErrors(erros);
+
+            return;
+          }
+            Alert.alert('erro no login', 'ocorreu erro ai cpx' );
+        }
     },[])
 
     return (
@@ -41,7 +69,7 @@ const Login = () => {
             
                 <Form 
                  ref={formRef}
-                 onSubmit={handleLogin}
+                 onSubmit={onSubmit}
                 >    
                    <Input
                     icon='mail'
