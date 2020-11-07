@@ -18,7 +18,7 @@ const RouteManger: React.FC<RouteProps> = () => {
         )
     )
   };
-  return <Switch>{mapRoutes()}</Switch>;
+  return <Switch>{ mapRoutes() }</Switch>;
 };
 
 export { RouteManger };

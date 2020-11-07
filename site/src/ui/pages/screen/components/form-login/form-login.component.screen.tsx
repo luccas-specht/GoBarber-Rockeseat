@@ -1,7 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
+import { toastConfig } from '../../../../../configs/toaster/toaster.config';
 
 import { useAuth } from '../../../../../hooks'
 
@@ -23,28 +27,24 @@ const FormLogin = () => {
     setPassword(event.target.value);
   }
 
-  const handleSubmit = (event: any) => {
+  const onSubmit = async (event: any): Promise<void> => {
     event.preventDefault()
     if (!email || !password) {
-      alert('Você precisa preencher todos os campos');
+      toast.error("Dados incorretos", toastConfig);
     } else {
-      login();
+      const response = await authentication(email, password);
+      if (response?.status === 400) {
+        console.log('aqui não deu:', response)
+      } else {
+        console.log('aqui deu', response)
+      }
     }
   }
 
-  const login = async () => {
-    const response = await authentication(email, password);
-    if (response.status === 400) {
-      console.log('aqui não deu:', response)
-
-    } else {
-      console.log('aqui deu', response)
-
-    }
-  }
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <ToastContainer />
+      <Form onSubmit={onSubmit}>
         <Title>Faça seu Login</Title>
         <InputText
           icon={<FiMail size={20} />}
