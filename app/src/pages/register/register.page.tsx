@@ -56,13 +56,12 @@ const Register = () => {
             return;
           }
         }
-    },[navigation])
+    }, [navigation])
 
     const onRegister = async (data: RegisterFormData) => {
         const response = await register(data.name, data.email, data.password);
-        console.log('response', response)
         if (response.status === 400) {
-          console.log('não deu')
+          /*TODO: mensagem de erro*/
         } else {
         navigation.navigate('Login')
         }

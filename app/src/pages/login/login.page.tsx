@@ -4,6 +4,8 @@ import { Image, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 
+import { useAuth } from '../../hooks';
+
 import { Form } from '@unform/mobile'
 import { FormHandles } from '@unform/core';
 
@@ -28,6 +30,7 @@ interface LoginFormData {
 
 const Login = () => {
     const formRef = useRef<FormHandles>(null)
+    const { authentication } = useAuth();
     const navigation = useNavigation();
    
     const onSubmit = useCallback(async(data: LoginFormData): Promise<void> => {
@@ -43,6 +46,7 @@ const Login = () => {
                 abortEarly: false
             })
 
+            onLogin(data);
         } catch(err){
           if(err instanceof Yup.ValidationError){
             const erros = getValidationsErros(err);
@@ -52,7 +56,16 @@ const Login = () => {
             return;
           }
         }
-    },[navigation])
+    }, [navigation])
+
+    const onLogin = async (data: LoginFormData) => {
+        const response = await authentication(data.email, data.password);
+        if (response.status === 400) {
+          /*TODO: mensagem de erro*/
+        } else {
+        navigation.navigate('Register')
+        }
+      }
 
     return (
         <>
