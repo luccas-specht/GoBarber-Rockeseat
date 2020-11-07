@@ -56,7 +56,7 @@ const Register = () => {
             return;
           }
         }
-    },[])
+    },[navigation])
 
     const onRegister = async (data: RegisterFormData) => {
         const response = await register(data.name, data.email, data.password);

@@ -8,7 +8,7 @@ import axios from 'axios';
 */
 
 const useAxios = (headers?: any) => {
-    return axios.create({ baseURL: 'http://192.168.100.94:3333/', headers })
+    return axios.create({ baseURL: 'http://10.0.2.2:3333/', headers })
 }
 
 export { useAxios }

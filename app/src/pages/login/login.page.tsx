@@ -52,7 +52,7 @@ const Login = () => {
             return;
           }
         }
-    },[])
+    },[navigation])
 
     return (
         <>
