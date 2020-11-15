@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+
 import { shade } from 'polished';
+
 import { Link } from 'react-router-dom';
 
 const Form = styled.form`
@@ -43,4 +45,8 @@ const CreateAccount = styled(Link)`
   }
 `;
 
-export { Form, Title, CreateAccount };
+export { 
+  Form, 
+  Title, 
+  CreateAccount
+ };

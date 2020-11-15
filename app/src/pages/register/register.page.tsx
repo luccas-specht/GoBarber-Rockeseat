@@ -58,8 +58,8 @@ const Register = () => {
         }
     }, [navigation])
 
-    const onRegister = async (data: RegisterFormData) => {
-        const response = await register(data.name, data.email, data.password);
+    const onRegister = async ({ email, name, password }: RegisterFormData) => {
+        const response = await register(name, email, password);
         if (response.status === 400) {
           /*TODO: mensagem de erro*/
         } else {
@@ -107,7 +107,7 @@ const Register = () => {
                      returnKeyType='send'
                      textContentType='newPassword'
                      secureTextEntry
-                     onSubmitEditing={()=>{formRef.current?.submitForm()}}
+                     onSubmitEditing={() =>{formRef.current?.submitForm()}}
                      />
                 </Form>
                  

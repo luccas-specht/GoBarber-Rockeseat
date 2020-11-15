@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+
 import { shade } from 'polished';
+
 import { Link } from 'react-router-dom';
 
 const Form = styled.form`
@@ -43,4 +45,6 @@ const BackToSingIn = styled(Link)`
   }
 `;
 
-export { Form, Title, BackToSingIn };
+export { Form, 
+        Title, 
+        BackToSingIn };

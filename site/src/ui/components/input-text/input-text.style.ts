@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 interface ContainerProps {
   isFocus: boolean;
   isFilled: boolean;
+  isError: boolean;
 }
 
 const Container = styled.div<ContainerProps>`
@@ -22,10 +23,10 @@ const Container = styled.div<ContainerProps>`
   }
 
   ${(props) =>
-    props.isFocus &&
+    props.isError &&
     css`
-      color: ${(props) => props.theme.colors.primary};
-      border-color: ${(props) => props.theme.colors.primary};
+      color: ${(props) => props.theme.colors.error};
+      border-color: ${(props) => props.theme.colors.error};
     `}
 
   ${(props) =>
@@ -33,9 +34,16 @@ const Container = styled.div<ContainerProps>`
     css`
       color: ${(props) => props.theme.colors.primary};
     `}
+
+  ${(props) =>
+    props.isFocus &&
+    css`
+      color: ${(props) => props.theme.colors.primary};
+      border-color: ${(props) => props.theme.colors.primary};
+    `}
 `;
 
-const Input = styled.input`
+const InputStyle = styled.input`
   color: ${(props) => props.theme.colors.primary2};
   flex: 1;
   background: transparent;
@@ -45,4 +53,4 @@ const Input = styled.input`
     color: ${(props) => props.theme.colors.grayHard};
   }
 `;
-export { Container, Input };
+export { Container, InputStyle };

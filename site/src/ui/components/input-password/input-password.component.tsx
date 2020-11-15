@@ -30,7 +30,7 @@ const InputPassword: React.FC<InputProps> = ({
       {icon}
       <Input
         id={id}
-        type='text'
+        type='password'
         name={name}
         value={value}
         placeholder={placeholder}

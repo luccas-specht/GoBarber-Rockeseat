@@ -1,0 +1,1 @@
+export { getValidationsErros } from './getValidationErrors';
