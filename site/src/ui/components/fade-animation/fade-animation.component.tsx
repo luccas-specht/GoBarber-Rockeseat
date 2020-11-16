@@ -1,7 +1,6 @@
 import React from 'react';
 import { Transition } from 'react-transition-group';
 import { Animation } from './fade-animation.style';
-
 interface FadeProps {
   duration: number;
   when: boolean;

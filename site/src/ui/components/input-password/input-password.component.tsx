@@ -41,7 +41,6 @@ const InputPassword = ({
     );
   };
 
-
   const handleInputBlur = useCallback(() => {
     setIsFocus(false);
     setIsFilled(!!value);

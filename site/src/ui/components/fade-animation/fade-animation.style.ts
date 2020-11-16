@@ -14,7 +14,6 @@ const handleAnimationState = (state: any) => {
       return 'opacity: 1; transform: translateY(0)';
   }
 };
-
 interface AnimationProps {
   state: string;
 }
