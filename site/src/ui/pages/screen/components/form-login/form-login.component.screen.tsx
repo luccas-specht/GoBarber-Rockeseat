@@ -37,13 +37,14 @@ const FormLogin = () => {
   });
 
   const onLogin = async ({ email, password }: LoginFormData): Promise<void> => {
-    try {
-       const response = await authentication(email, password);
-       console.log('reponse', response);
-      history.push('/');
-    } catch (err) {
-      console.log('error', err)
-    };
+    const response = await authentication(email, password);
+    console.log('reponse', response);
+
+    if(response.status === 401 || response.status === 400){
+      console.log('deu error cpx');
+    }else{
+      history.push('/sucesso');
+    }
   }
 
   const formik = useFormik({
@@ -68,11 +69,13 @@ const FormLogin = () => {
             error={formik.errors.email}
             onChange={formik.handleChange}
           />    
-          <InputPassword
+           <InputPassword
              icon={<FiLock size={20} />}
              id="password"
              name="password"
              placeholder='Senha'
+             dataSelector='password_password'
+             error={formik.errors.password}
              value={formik.values.password}
              onChange={formik.handleChange}
           />

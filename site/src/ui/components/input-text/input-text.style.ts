@@ -26,7 +26,7 @@ const Container = styled.div<ContainerProps>`
     props.isError &&
     css`
       color: ${(props) => props.theme.colors.error};
-      border-color: ${(props) => props.theme.colors.error};
+      /* border-color: ${(props) => props.theme.colors.error}; */
     `}
 
   ${(props) =>

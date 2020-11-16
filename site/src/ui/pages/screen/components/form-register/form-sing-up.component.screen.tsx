@@ -40,12 +40,14 @@ const FormRegister = () => {
   });
 
   const onRegister = async ({ name, email, password }: RegisterFormData): Promise<void> => {
-    try {
-       const response = await register(name, email, password);
+   const response = await register(name, email, password);
+    console.log('reponse', response);
+
+    if(response?.status === 401 || response?.status === 400){
+      console.log('deu error cpx');
+    }else{
       history.push('/login');
-    } catch (err) {
-      console.log('error', err)
-    };
+    }
   }
 
   const formik = useFormik({
@@ -67,7 +69,7 @@ const FormRegister = () => {
             placeholder='Nome'
             dataSelector='name_name'
             value={formik.values.name}
-            error={formik.errors.email}
+            error={formik.errors.name}
             onChange={formik.handleChange}
           />  
           <InputText
@@ -85,6 +87,8 @@ const FormRegister = () => {
              id="password"
              name="password"
              placeholder='Senha'
+             dataSelector='password_password'
+             error={formik.errors.password}
              value={formik.values.password}
              onChange={formik.handleChange}
           />

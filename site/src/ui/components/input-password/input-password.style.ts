@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 interface ContainerProps {
   isFocus: boolean;
   isFilled: boolean;
+  isError: boolean;
 }
 
 const Container = styled.div<ContainerProps>`
@@ -20,6 +21,13 @@ const Container = styled.div<ContainerProps>`
   svg {
     margin-right: 16px;
   }
+
+  ${(props) =>
+    props.isError &&
+    css`
+      color: ${(props) => props.theme.colors.error};
+      /* border-color: ${(props) => props.theme.colors.error}; */
+    `}
 
   ${(props) =>
     props.isFocus &&
