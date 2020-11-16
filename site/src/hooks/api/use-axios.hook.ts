@@ -1,5 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
-export function useAxios(baseURL: string, headers?: any) {
-    return axios.create({ baseURL, headers })
-}
+const useAxios = (headers?: object): AxiosInstance => (
+     axios.create({ baseURL: 'http://localhost:3333', headers })
+);
+
+export { useAxios }

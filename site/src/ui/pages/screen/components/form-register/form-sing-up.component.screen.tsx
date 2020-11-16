@@ -11,7 +11,7 @@ import { useRegister } from '../../../../../hooks'
  import { InputText, InputPassword, Button } from '../../../../components';
  import { Form, Title, BackToSingIn } from './form-sing-up.component.style';
 
-import { validationMsg } from '../../../../../constants'
+import { validationMessage } from '../../../../../constants'
 interface RegisterFormData {
   name: string;
   email: string;
@@ -30,13 +30,13 @@ const FormRegister = () => {
   
   const validations = Yup.object().shape({
     name: Yup.string()
-      .required(validationMsg.required),
+      .required(validationMessage.required),
     email: Yup.string()
-      .required(validationMsg.loginRequiredEmail)
-      .email(validationMsg.validEmail),
+      .required(validationMessage.loginRequiredEmail)
+      .email(validationMessage.validEmail),
     password: Yup.string()
-      .required(validationMsg.loginRequiredPassword)
-      .min(6, validationMsg.min6Char)
+      .required(validationMessage.loginRequiredPassword)
+      .min(6, validationMessage.min6Char)
   });
 
   const onRegister = async ({ name, email, password }: RegisterFormData): Promise<void> => {

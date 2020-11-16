@@ -4,11 +4,11 @@ const validEmail = 'Por favor, insira um e-mail válido.';
 const loginRequiredEmail = 'Por favor, preencha o campo de email.'
 const loginRequiredPassword = 'Por favor, preencha o campo de senha.'
 
-const validationMsg = {
+const validationMessage = {
   required,
   min6Char,
   validEmail,
   loginRequiredEmail,
   loginRequiredPassword
 };
-export { validationMsg };
+export { validationMessage };

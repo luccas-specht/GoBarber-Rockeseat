@@ -1,6 +1,6 @@
 import { useAxios } from '../api/use-axios.hook';
 
-const axios = useAxios('http://localhost:3333')
+const axios = useAxios();
 
 const useAuth = () => {
     const authentication = async (email: string, password: string) => {

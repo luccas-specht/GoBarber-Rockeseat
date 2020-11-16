@@ -1,2 +1,2 @@
 export { routers } from './router/routes';
-export { validationMsg } from './validation-message/validation-msg';
+export { validationMessage } from './validation-message/validation-msg';

@@ -12,7 +12,7 @@ import { useAuth } from '../../../../../hooks'
  import { InputText, InputPassword, Button } from '../../../../components';
  import { Form, Title, CreateAccount } from './form-login.component.style';
 
-import { validationMsg } from '../../../../../constants'
+import { validationMessage } from '../../../../../constants'
 interface LoginFormData {
   email: string;
   password: string;
@@ -29,11 +29,11 @@ const FormLogin = () => {
   
   const validations = Yup.object().shape({
     email: Yup.string()
-      .required(validationMsg.loginRequiredEmail)
-      .email(validationMsg.validEmail),
+      .required(validationMessage.loginRequiredEmail)
+      .email(validationMessage.validEmail),
     password: Yup.string()
-      .required(validationMsg.loginRequiredPassword)
-      .min(6, validationMsg.min6Char)
+      .required(validationMessage.loginRequiredPassword)
+      .min(6, validationMessage.min6Char)
   });
 
   const onLogin = async ({ email, password }: LoginFormData): Promise<void> => {
