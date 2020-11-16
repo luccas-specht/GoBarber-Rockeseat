@@ -33,7 +33,6 @@ const InputText = ({
     if (!showError) {
       return;
     }
-    console.log('show', showError)
     return (
       <Fade duration={300} when={showError}>
         <InputErrorMessage dataSelector={`${dataSelector}_error`} message={error} />

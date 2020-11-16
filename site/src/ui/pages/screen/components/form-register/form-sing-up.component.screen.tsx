@@ -8,10 +8,14 @@ import * as Yup from 'yup'
 
 import { useRegister } from '../../../../../hooks'
 
- import { InputText, InputPassword, Button } from '../../../../components';
- import { Form, Title, BackToSingIn } from './form-sing-up.component.style';
+import { InputText, InputPassword, Button } from '../../../../components';
+import { Form, Title, BackToSingIn } from './form-sing-up.component.style';
 
 import { validationMessage } from '../../../../../constants'
+
+import { toastConfig } from '../../../../../configs';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface RegisterFormData {
   name: string;
   email: string;
@@ -41,10 +45,9 @@ const FormRegister = () => {
 
   const onRegister = async ({ name, email, password }: RegisterFormData): Promise<void> => {
    const response = await register(name, email, password);
-    console.log('reponse', response);
-
-    if(response?.status === 401 || response?.status === 400){
-      console.log('deu error cpx');
+    if(response?.status === 400){
+      toast.error(`${response.data.message}`, toastConfig);
+      formik.resetForm();
     }else{
       history.push('/login');
     }
@@ -60,6 +63,7 @@ const FormRegister = () => {
  
   return (
     <>
+     <ToastContainer />
       <Form onSubmit={formik.handleSubmit}>
        <Title>Faça seu Login</Title>
        <InputText

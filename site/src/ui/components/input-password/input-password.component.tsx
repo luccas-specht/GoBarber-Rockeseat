@@ -57,8 +57,8 @@ const InputPassword = ({
           value={value}
           placeholder={placeholder}
           onChange={onChange}
-          onBlur={handleInputBlur}
           onFocus={() => setIsFocus(true)}
+          onBlur={handleInputBlur}
         />
       </Container>
       {renderError()}

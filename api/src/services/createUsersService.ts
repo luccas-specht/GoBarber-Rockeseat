@@ -21,9 +21,8 @@ class CreateUserService {
       where: { email },
     });
 
-    if (checkUserExists) {
-      throw new AppError('Email já cadastrado.');
-    }
+    if (checkUserExists) throw new AppError('E-mail já está cadastrado na plataforma.', 400);
+    
     const hasedPassword = await hash(password, 8);
 
     const user = usersRepository.create({

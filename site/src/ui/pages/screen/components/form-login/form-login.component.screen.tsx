@@ -9,10 +9,14 @@ import * as Yup from 'yup'
 
 import { useAuth } from '../../../../../hooks'
 
- import { InputText, InputPassword, Button } from '../../../../components';
- import { Form, Title, CreateAccount } from './form-login.component.style';
+import { InputText, InputPassword, Button } from '../../../../components';
+import { Form, Title, CreateAccount } from './form-login.component.style';
 
 import { validationMessage } from '../../../../../constants'
+
+import { toastConfig } from '../../../../../configs';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface LoginFormData {
   email: string;
   password: string;
@@ -38,10 +42,9 @@ const FormLogin = () => {
 
   const onLogin = async ({ email, password }: LoginFormData): Promise<void> => {
     const response = await authentication(email, password);
-    console.log('reponse', response);
-
-    if(response.status === 401 || response.status === 400){
-      console.log('deu error cpx');
+    if(response.status === 401){
+      toast.error(`${response.data.message}`, toastConfig);
+      formik.resetForm();
     }else{
       history.push('/sucesso');
     }
@@ -57,6 +60,7 @@ const FormLogin = () => {
  
   return (
     <>
+      <ToastContainer />
       <Form onSubmit={formik.handleSubmit}>
        <Title>Faça seu Login</Title>
           <InputText
