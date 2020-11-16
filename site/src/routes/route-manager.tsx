@@ -1,10 +1,10 @@
 import React from 'react';
-import { Switch, RouteProps } from 'react-router-dom';
+import { Switch} from 'react-router-dom';
 
 import { routers } from '../constants';
 import { PublicRoute } from './public-route';
 
-const RouteManger: React.FC<RouteProps> = () => {
+const RouteManger = (): JSX.Element => {
   const mapRoutes = () => {
     return routers.map(
       (route, key) =>

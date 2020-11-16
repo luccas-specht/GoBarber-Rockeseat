@@ -9,14 +9,14 @@ interface InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputPassword: React.FC<InputProps> = ({
+const InputPassword = ({
   id,
   icon,
   name,
   value,
   placeholder,
   onChange,
-}) => {
+}: InputProps) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [isFilled, setIsFilled] = useState<boolean>(false);
 
