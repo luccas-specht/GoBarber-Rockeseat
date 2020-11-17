@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { useHistory, Link } from 'react-router-dom';
 
@@ -8,6 +8,8 @@ import { useFormik } from "formik";
 import * as Yup from 'yup'
 
 import { useAuth } from '../../../../../hooks'
+
+import { AuthContext } from '../../../../../context';
 
 import { InputText, InputPassword, Button } from '../../../../components';
 import { Form, Title, CreateAccount } from './form-login.component.style';
@@ -25,6 +27,7 @@ interface LoginFormData {
 const FormLogin = () => {
   const history = useHistory();
   const { authentication } = useAuth();
+  const { authenticatedUser } = useContext(AuthContext);
 
   const initialValues = {
     email: '',
@@ -46,6 +49,7 @@ const FormLogin = () => {
       toast.error(`${response.data.message}`, toastConfig);
       formik.resetForm();
     }else{
+      authenticatedUser(response);
       history.push('/sucesso');
     }
   }
