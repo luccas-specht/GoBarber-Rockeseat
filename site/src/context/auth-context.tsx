@@ -11,6 +11,7 @@ interface AuthProviderProps  {
 
 interface AuthContextProps {
     user: object;
+    signOut(): void;
     authenticatedUser(prop: AuthenticatedUserProps): void;
 }
 
@@ -33,10 +34,17 @@ const AuthProvider = ({ children }: AuthProviderProps)=> {
       setAuthUser({ token, user });
     }
 
+    const signOut = (): void => {
+        localStorage.removeItem('@GoBarber:token');
+        localStorage.removeItem('@GoBarber:user');
+        setAuthUser({} as AuthenticatedUserProps);
+    }
+
     return(
         <AuthContext.Provider
          value={{ 
              user: authUser.user,
+             signOut,
              authenticatedUser
             }}
         >
