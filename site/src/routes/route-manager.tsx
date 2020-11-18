@@ -27,7 +27,7 @@ const RouteManger = (): JSX.Element => {
           </PrivateRoute> 
     )
   );
-  return <Switch>{ mapRoutes() }</Switch>;
+  return <Switch>{mapRoutes()}</Switch>;
 };
 
 export { RouteManger };
