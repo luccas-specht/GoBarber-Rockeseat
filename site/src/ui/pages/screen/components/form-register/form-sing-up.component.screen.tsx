@@ -45,7 +45,7 @@ const FormRegister = () => {
 
   const onRegister = async ({ name, email, password }: RegisterFormData): Promise<void> => {
    const response = await register(name, email, password);
-    if(response?.status === 400){
+    if(response.status === 400){
       toast.error(`${response.data.message}`, toastConfig);
       formik.resetForm();
     }else{

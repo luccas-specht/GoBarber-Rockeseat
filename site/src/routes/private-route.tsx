@@ -1,21 +1,16 @@
 import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
-import { useAuth } from '../hooks'
-
-const { authentication } = useAuth();
-
-const PrivateRoute = async ({ children, path }: RouteProps) => {
-  const response = await authentication('pedro@', '123')
+const PrivateRoute = ({ children, path }: RouteProps) => {
+  const token = localStorage.getItem('@GoBarber:token');
 
   const checkToken = () => {
-    if (!response.status) {
-      return <Redirect to='/' />;
-    }
-    return children;
-  };
+      if (!token) return <Redirect to="/" />
+      
+      return children
+  }
 
-  return <Route path={path} render={checkToken} />;
-};
+  return <Route path={path} render={checkToken} />
+}
 
-export { PrivateRoute };
+export { PrivateRoute }

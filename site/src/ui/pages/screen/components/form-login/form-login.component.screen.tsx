@@ -50,7 +50,7 @@ const FormLogin = () => {
       formik.resetForm();
     }else{
       authenticatedUser(response);
-      history.push('/sucesso');
+      history.push('/dashboard');
     }
   }
 

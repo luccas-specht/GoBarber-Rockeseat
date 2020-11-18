@@ -22,7 +22,7 @@ const ImgBackground = styled.div`
   background-size: cover;
 `;
 
-const appearFromLeft = keyframes`
+const appearFromRight = keyframes`
   from{
     opacity: 0;
     transform: translateX(-50px);
@@ -38,7 +38,11 @@ const AnimationContext = styled.div`
   flex-direction: column;
   align-items: center;
 
-  animation: ${appearFromLeft} 1.2s;
+  animation: ${appearFromRight} 1.2s;
 `;
 
-export { Container, Context, ImgBackground, AnimationContext };
+export { 
+    Container, 
+    Context, 
+    ImgBackground, 
+    AnimationContext };
