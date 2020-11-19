@@ -36,10 +36,10 @@ const FormLogin = () => {
   
   const validations = Yup.object().shape({
     email: Yup.string()
-      .required(validationMessage.loginRequiredEmail)
+      .required(validationMessage.requiredEmail)
       .email(validationMessage.validEmail),
     password: Yup.string()
-      .required(validationMessage.loginRequiredPassword)
+      .required(validationMessage.requiredPassword)
       .min(6, validationMessage.min6Char)
   });
 

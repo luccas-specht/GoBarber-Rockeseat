@@ -34,12 +34,12 @@ const FormRegister = () => {
   
   const validations = Yup.object().shape({
     name: Yup.string()
-      .required(validationMessage.required),
+      .required(validationMessage.requiredName),
     email: Yup.string()
-      .required(validationMessage.loginRequiredEmail)
+      .required(validationMessage.requiredEmail)
       .email(validationMessage.validEmail),
     password: Yup.string()
-      .required(validationMessage.loginRequiredPassword)
+      .required(validationMessage.requiredPassword)
       .min(6, validationMessage.min6Char)
   });
 

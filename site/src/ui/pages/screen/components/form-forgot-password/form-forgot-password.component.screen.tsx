@@ -10,7 +10,7 @@ import { Form, Title, BackToSingIn } from './form-forgot-password.component.styl
 
 import { validationMessage } from '../../../../../constants'
 
-interface LoginFormData {
+interface FormForgotPasswordData {
   email: string;
 }
 
@@ -18,29 +18,29 @@ const FormForgotPassword = () => {
 
   const initialValues = {
     email: ''
-  } as LoginFormData
+  } as FormForgotPasswordData
   
   const validations = Yup.object().shape({
     email: Yup.string()
-      .required(validationMessage.loginRequiredEmail)
+      .required(validationMessage.requiredEmail)
       .email(validationMessage.validEmail)
   });
 
-  const onLogin = async ({ email }: LoginFormData): Promise<void> => {
+  const recoverPassword = async ({ email }: FormForgotPasswordData): Promise<void> => {
    
   }
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validations,
-    onSubmit: (values: LoginFormData) => {
-      onLogin(values)
+    onSubmit: (data: FormForgotPasswordData) => {
+      recoverPassword(data)
     }
   });
  
   return (
       <Form onSubmit={formik.handleSubmit}>
-        <Title>Faça seu Login</Title>
+        <Title>Recuperar senha</Title>
            <InputText
              icon={<FiMail size={20} />}
              id="email"
