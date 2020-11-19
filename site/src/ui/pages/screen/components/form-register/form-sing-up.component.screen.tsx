@@ -97,12 +97,11 @@ const FormRegister = () => {
              onChange={formik.handleChange}
           />
         <Button type='submit' title='Entrar' />
+        <BackToSingIn to='login'>
+          <FiArrowLeft />
+          Voltar para o login
+        </BackToSingIn>
       </Form>
-
-      <BackToSingIn to='login'>
-        <FiArrowLeft />
-        Voltar para o login
-      </BackToSingIn>
     </>
   );
 };

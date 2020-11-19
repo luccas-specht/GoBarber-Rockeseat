@@ -10,21 +10,19 @@ const RouteManger = (): JSX.Element => {
     routers.map(
       (route, key) =>
         route.isPublic ?
-          <PublicRoute
-            exact
-            key={key}
-            path={route.path}
-          >
-            {route.component()}
-          </PublicRoute>
-           :
-          <PrivateRoute
-            exact
-            key={key}
-            path={route.path}
-          >
-            {route.component()}
-          </PrivateRoute> 
+        <PublicRoute
+          exact
+          key={key}
+          path={route.path}
+          component={route.component}
+        />
+         :
+        <PrivateRoute
+          exact
+          key={key}
+          path={route.path}
+          component={route.component}
+        />
     )
   );
   return <Switch>{mapRoutes()}</Switch>;

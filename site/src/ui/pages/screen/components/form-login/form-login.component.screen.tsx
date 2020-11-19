@@ -89,7 +89,7 @@ const FormLogin = () => {
           />
 
         <Button type='submit' title='Entrar' />
-        <Link to='forgot'>Esqueci a minha senha</Link>
+        <Link to='forgot-password'>Esqueci a minha senha</Link>
       </Form>
 
       <CreateAccount to='sing-up'>
