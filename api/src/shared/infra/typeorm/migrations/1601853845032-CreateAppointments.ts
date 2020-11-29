@@ -32,9 +32,7 @@ class CreateAppointments1601853845032 implements MigrationInterface {
         ],
       })
     );
-    await queryRunner.createForeignKey(
-      'appointments',
-      new TableForeignKey({
+    await queryRunner.createForeignKey('appointments', new TableForeignKey({
         name: 'appointment-provider',
         columnNames: ['provider_id'],
         referencedColumnNames: ['id'],
@@ -55,7 +53,7 @@ class CreateAppointments1601853845032 implements MigrationInterface {
         type: 'uuid',
       })
     );
-    // await queryRunner.dropTable('appointments');
+    await queryRunner.dropTable('appointments');
   }
 }
 export { CreateAppointments1601853845032 };

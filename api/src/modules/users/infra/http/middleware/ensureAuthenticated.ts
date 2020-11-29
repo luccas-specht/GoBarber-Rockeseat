@@ -30,4 +30,4 @@ function ensureAuthenticated(request: Request, response: Response, next: NextFun
   }
 }
 
-export default ensureAuthenticated
+export { ensureAuthenticated }

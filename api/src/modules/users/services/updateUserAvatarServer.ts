@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { injectable, inject } from 'tsyringe';
 
-import uploadConfig from '@config/upload';
+import { uploadConfig } from '@config/upload';
 import { Users } from '../infra/typeorm/entities/users';
 import { AppError } from '@shared/errors/appError';
 
