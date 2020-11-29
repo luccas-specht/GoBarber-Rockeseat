@@ -22,7 +22,7 @@ class CreateAppointments1601853845032 implements MigrationInterface {
           {
             name: 'provider_id',
             type: 'uuid',
-            isNullable: true,
+            isNullable: false,
           },
           {
             name: 'date',

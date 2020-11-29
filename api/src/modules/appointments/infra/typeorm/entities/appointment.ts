@@ -7,7 +7,6 @@ import {
 } from 'typeorm';
 
 import { Users } from '@modules/users/infra/typeorm/entities/users';
-
 @Entity('appointments')
 class Appointment {
   @PrimaryGeneratedColumn('uuid')
@@ -22,8 +21,6 @@ class Appointment {
 
   @Column('timestamp with time zone')
   date: Date;
-
-  
 }
 
 export { Appointment };
