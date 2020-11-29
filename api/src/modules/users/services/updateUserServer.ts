@@ -1,11 +1,12 @@
-import { getRepository } from 'typeorm';
 
 import path from 'path';
 import fs from 'fs';
 
-import uploadConfig from '../config/upload';
-import { Users } from '../models/users';
-import { AppError } from '../errors/appError';
+import uploadConfig from '@config/upload';
+import { Users } from '../infra/typeorm/entities/users';
+import { AppError } from '@shared/errors/appError';
+
+import { IUsersRepository } from '../repositories/IUsersRepository';
 
 interface Request {
     user_id: string,
@@ -13,10 +14,11 @@ interface Request {
 }
 
 class UpdateUserAvatarService {
+    constructor(private usersRepository: IUsersRepository) {}
 
     public async execute({ user_id, avatarFileName }: Request): Promise<Users> {
-        const usersRepository = getRepository(Users)
-        const user = await usersRepository.findOne(user_id)
+       
+        const user = await this.usersRepository.findById(user_id)
 
         if (!user) {
             throw new AppError('usuario não autenticado', 401)
@@ -33,9 +35,7 @@ class UpdateUserAvatarService {
 
         user.avatar = avatarFileName
 
-        await usersRepository.save(user)
-
-        return user;
+        return await this.usersRepository.save(user);
     }
 }
 
