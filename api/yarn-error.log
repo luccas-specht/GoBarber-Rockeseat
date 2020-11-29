@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add express-async-erros
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add tsringe
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/rljjie/Android/Sdk/emulator:/home/rljjie/Android/Sdk/tools:/home/rljjie/Android/Sdk/tools/bin:/home/rljjie/Android/Sdk/platform-tools:/home/rljjie/Android/Sdk/emulator:/home/rljjie/Android/Sdk/tools:/home/rljjie/Android/Sdk/tools/bin:/home/rljjie/Android/Sdk/platform-tools:/home/rljjie/Android/Sdk/emulator:/home/rljjie/Android/Sdk/tools:/home/rljjie/Android/Sdk/tools/bin:/home/rljjie/Android/Sdk/platform-tools
 
 Yarn version: 
   1.22.5
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/express-async-erros: Not found
+  Error: https://registry.yarnpkg.com/tsringe: Not found
       at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
       at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
       at Request.emit (events.js:315:20)
@@ -34,9 +34,9 @@ npm manifest:
     "license": "MIT",
     "scripts": {
       "build": "tsc",
-      "dev:server": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
-      "start": "ts-node src/index.ts",
-      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+      "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
+      "start": "ts-node src/shared/infra/http/server.ts",
+      "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
     },
     "devDependencies": {
       "@types/bcryptjs": "^2.4.2",
@@ -45,6 +45,7 @@ npm manifest:
       "@types/jsonwebtoken": "^8.5.0",
       "@types/multer": "^1.4.4",
       "ts-node-dev": "^1.0.0-pre.57",
+      "tsconfig-paths": "^3.9.0",
       "typescript": "^3.9.7"
     },
     "dependencies": {
@@ -52,6 +53,7 @@ npm manifest:
       "cors": "^2.8.5",
       "date-fns": "^2.16.1",
       "express": "^4.17.1",
+      "express-async-errors": "^3.1.1",
       "jsonwebtoken": "^8.5.1",
       "multer": "^1.4.2",
       "pg": "^8.4.0",
@@ -119,6 +121,11 @@ Lockfile:
       "@types/express-serve-static-core" "*"
       "@types/qs" "*"
       "@types/serve-static" "*"
+  
+  "@types/json5@^0.0.29":
+    version "0.0.29"
+    resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
+    integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
   
   "@types/jsonwebtoken@^8.5.0":
     version "8.5.0"
@@ -619,6 +626,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
     integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
   
+  express-async-errors@^3.1.1:
+    version "3.1.1"
+    resolved "https://registry.yarnpkg.com/express-async-errors/-/express-async-errors-3.1.1.tgz#6053236d61d21ddef4892d6bd1d736889fc9da41"
+    integrity sha512-h6aK1da4tpqWSbyCa3FxB/V6Ehd4EEB15zyQq9qe75OZBp0krinNKuH4rAY+S/U/2I36vdLAUFSjQJ+TFmODng==
+  
   express@^4.17.1:
     version "4.17.1"
     resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
@@ -898,6 +910,13 @@ Lockfile:
       argparse "^1.0.7"
       esprima "^4.0.0"
   
+  json5@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.1.tgz#779fb0018604fa854eacbf6252180d83543e3dbe"
+    integrity sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
+    dependencies:
+      minimist "^1.2.0"
+  
   jsonwebtoken@^8.5.1:
     version "8.5.1"
     resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz#00e71e0b8df54c2121a1f26137df2280673bcc0d"
@@ -1057,7 +1076,7 @@ Lockfile:
     dependencies:
       brace-expansion "^1.1.7"
   
-  minimist@^1.1.3, minimist@^1.2.5:
+  minimist@^1.1.3, minimist@^1.2.0, minimist@^1.2.5:
     version "1.2.5"
     resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
     integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
@@ -1736,6 +1755,16 @@ Lockfile:
       make-error "^1.1.1"
       source-map-support "^0.5.17"
       yn "3.1.1"
+  
+  tsconfig-paths@^3.9.0:
+    version "3.9.0"
+    resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.9.0.tgz#098547a6c4448807e8fcb8eae081064ee9a3c90b"
+    integrity sha512-dRcuzokWhajtZWkQsDVKbWyY+jgcLC5sqJhg2PSgf4ZkH2aHPvaOY8YWGhmjb68b5qqTfasSsDO9k7RUiEmZAw==
+    dependencies:
+      "@types/json5" "^0.0.29"
+      json5 "^1.0.1"
+      minimist "^1.2.0"
+      strip-bom "^3.0.0"
   
   tsconfig@^7.0.0:
     version "7.0.0"
