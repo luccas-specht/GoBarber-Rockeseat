@@ -9,6 +9,9 @@ import { UsersRepository } from '@modules/users/infra/typeorm/repositories/Users
 import { IStorageProvider } from './providers/StorageProvider/models/IStorageProvider';
 import { DiskStorageProvider } from './providers/StorageProvider/implementations/DiskStorageProvider';
 
+import {} from '@shared/container/providers/MailProvider/models/IMailProvider';
+
+
 container.registerSingleton<IAppointmentsRepository>('AppointmentRepository', AppointmentRepository);
 
 container.registerSingleton<IUsersRepository>('UsersRepository', UsersRepository);
