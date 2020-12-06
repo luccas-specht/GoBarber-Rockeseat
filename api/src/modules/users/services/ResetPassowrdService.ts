@@ -34,7 +34,7 @@ class ResetPasswordService {
 
      if(!user) throw new AppError('user inexistente cpx');
 
-     const tokenCreatedAt = userToken.create_at;
+     const tokenCreatedAt = userToken.created_at;
      const compareDate = addHours(tokenCreatedAt, 2);
 
      if(isAfter(Date.now(), compareDate)) throw new AppError('tempo da mensagem expirou cpx');
