@@ -26,8 +26,18 @@ class CreateAppointments1601853845032 implements MigrationInterface {
           },
           {
             name: 'date',
-            type: 'timestamp',
+            type: 'timestamp with time zone',
             isNullable: false,
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
           },
         ],
       })

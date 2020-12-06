@@ -28,9 +28,9 @@ class SendForgotPasswordEmailService {
       
       if(!user) throw new AppError('e-mail não cadastrado.', 400);
 
-      await this.usersTokenRepository.generate(user.id);
+     const { token } = await this.usersTokenRepository.generate(user.id);
 
-      this.mailProvier.sendMail(email, 'recupera ai cpx')
+      await this.mailProvier.sendMail(email, `recupera ai cpx: ${token}`)
   };
 
 };

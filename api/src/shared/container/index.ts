@@ -12,6 +12,12 @@ import { DiskStorageProvider } from './providers/StorageProvider/implementations
 import { IUsersTokenRepository } from '@modules/users/repositories/IUserTokens';
 import { UsersTokenRepository } from '@modules/users/infra/typeorm/repositories/UsersTokenRepository';
 
+import { IMailProvider } from './providers/MailProvider/models/IMailProvider';
+import { EtherealMailProvider } from './providers/MailProvider/implementations/EtherealMailProvider';
+
+container.registerInstance<IMailProvider>('MailProvider', 
+    new EtherealMailProvider()
+);
 
 container.registerSingleton<IAppointmentsRepository>('AppointmentRepository', AppointmentRepository);
 
