@@ -19,7 +19,7 @@ class Appointment {
   @JoinColumn({ name: 'provider_id' })
   provider: Users;
 
-  @Column('timestamp with time zone')
+  @Column('timestamp')
   date: Date;
 }
 
