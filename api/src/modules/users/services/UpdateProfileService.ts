@@ -1,6 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { compare, hash } from 'bcryptjs';
-
+import { compare, hash, compareSync, genSalt, encodeBase64, getRounds, getSalt, setRandomFallback, hashSync} from 'bcryptjs'
 import { Users } from '../infra/typeorm/entities/users';
 import { AppError } from '@shared/errors/appError';
 
@@ -9,7 +8,7 @@ import { IUsersRepository } from '../repositories/IUsersRepository';
 interface Request {
     userId: string,
     name: string,
-    oldPassword?: string,
+    actualPassword?: string,
     password?: string
 }
 
@@ -17,11 +16,10 @@ interface Request {
 class UpdateProfileService {
     constructor(
         @inject('UsersRepository')
-        private usersRepository: IUsersRepository,
-
+        private usersRepository: IUsersRepository
         ) {}
 
-    public async execute({ userId, name, oldPassword, password }: Request): Promise<Users> {
+    public async execute({ userId, name, actualPassword, password }: Request): Promise<Users> {
        
         const user = await this.usersRepository.findById(userId);
 
@@ -29,12 +27,14 @@ class UpdateProfileService {
 
         user.name = name;
 
-        if(password && !oldPassword) throw new AppError('Senha antiga deve ser informada informada.', 400);
+        if(password && !actualPassword) throw new AppError('Senha antiga deve ser informada informada.', 400);
 
-        if(password && oldPassword){
-            const checkOldPassword = await compare(oldPassword, password);
-
-            if(!checkOldPassword) throw new AppError('Senha antiga deve ser diferente da senha atual.', 400);
+        if(password && actualPassword){
+            const passwordMatched = await compare(actualPassword, user.password);
+           
+            if(!passwordMatched) throw new AppError('Senha atual incorreta.', 400);
+            
+            if(actualPassword === password) throw new AppError('Senha atual deve ser diferente da nova senha.', 400);
 
             const hasedPassword = await hash(password, 8);
             user.password = hasedPassword;
