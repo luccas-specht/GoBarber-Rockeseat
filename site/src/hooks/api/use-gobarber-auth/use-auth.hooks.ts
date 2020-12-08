@@ -1,8 +1,9 @@
-import { useAxios } from '../api/use-axios.hook';
+import { useAxios } from '../use-axios/use-axios.hook';
 
 const axios = useAxios();
 
-const useAuth = () => {
+const useGoBarberAuth = () => {
+    
     const authentication = async (email: string, password: string) => {
         try {
             const response = await axios.post('/auth', {
@@ -17,4 +18,4 @@ const useAuth = () => {
     return { authentication }
 }
 
-export { useAuth }
+export { useGoBarberAuth }

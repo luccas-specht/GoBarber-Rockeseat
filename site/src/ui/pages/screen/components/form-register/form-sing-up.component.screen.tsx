@@ -6,7 +6,7 @@ import { FiArrowLeft, FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 
-import { useRegister } from '../../../../../hooks'
+import { useGoBarberRegister } from '../../../../../hooks'
 
 import { InputText, InputPassword, Button } from '../../../../components';
 import { Form, Title, BackToSingIn } from './form-sing-up.component.style';
@@ -24,7 +24,7 @@ interface RegisterFormData {
 
 const FormRegister = () => {
   const history = useHistory();
-  const { register } = useRegister();
+  const { register } = useGoBarberRegister();
 
   const initialValues = {
     name: '',

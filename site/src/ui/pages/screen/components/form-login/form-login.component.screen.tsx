@@ -7,7 +7,7 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { useFormik } from "formik";
 import * as Yup from 'yup'
 
-import { useAuth } from '../../../../../hooks'
+import { useGoBarberAuth } from '../../../../../hooks'
 
 import { AuthContext } from '../../../../../context';
 
@@ -26,7 +26,7 @@ interface LoginFormData {
 
 const FormLogin = () => {
   const history = useHistory();
-  const { authentication } = useAuth();
+  const { authentication } = useGoBarberAuth();
   const { authenticatedUser } = useContext(AuthContext);
 
   const initialValues = {

@@ -1,8 +1,9 @@
-import { useAxios } from '../api/use-axios.hook';
+import { useAxios } from '../use-axios/use-axios.hook';
 
 const axios = useAxios();
 
-const useRegister = () => {
+const useGoBarberRegister = () => {
+   
     const register = async (name: string, email: string, password: string) => {
         try {
             const response = await axios.post('/users', {
@@ -18,4 +19,4 @@ const useRegister = () => {
     return { register }
 }
 
-export { useRegister }
+export { useGoBarberRegister }
