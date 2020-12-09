@@ -22,6 +22,7 @@ interface FormForgotPasswordData {
 
 const FormForgotPassword = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const messageFedback = 'Enviamos um e-mail de recuperação de senha para o endereço fornecido, cheque sua caixa de entrada.'
 
   const { forgotPassword } = useGoBarberForgotPassword();
 
@@ -37,9 +38,8 @@ const FormForgotPassword = () => {
 
   const recoverPassword = async ({ email }: FormForgotPasswordData): Promise<void> => {
     setIsLoading(true);
-    const message = 'Enviamos um e-mail de recuperação de senha para o endreço fornecido, cheque sua caixa de entrada.'
     await forgotPassword(email);
-    toast.success(`${message}`, toastConfig);
+    toast.success(`${messageFedback}`, toastConfig);
     formik.resetForm();
     setIsLoading(false)
   }
