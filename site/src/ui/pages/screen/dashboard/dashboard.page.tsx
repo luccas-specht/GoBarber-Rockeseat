@@ -1,8 +1,14 @@
 import React from 'react';
 
-const Dashboard =  () =>{
-    console.log('dasboarda')
-    return <h1> oiiiiiiiiiiiiiiiiiiiiiiiiii</h1>;
+import { Header } from '../../../components';
+
+const Dashboard =  () => {
+   
+   return(
+       <>
+       <Header/>
+    </>
+   )
 }
 
 export { Dashboard };

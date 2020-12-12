@@ -1,13 +1,18 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState } from 'react';
+interface userData {
+    name: string;
+    id: string;
+    image: string | null;
+}
 interface AuthenticatedUserProps {
     token: string; 
-    user: object;
+    user: userData;
 }
 interface AuthProviderProps  { 
     children: React.ReactNode
  }
 interface AuthContextProps {
-    user: object;
+    user: userData;
     signOut(): void;
     authenticatedUser(prop: AuthenticatedUserProps): void;
 }

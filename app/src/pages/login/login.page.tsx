@@ -32,7 +32,8 @@ const Login = () => {
     const formRef = useRef<FormHandles>(null)
     const { authentication } = useAuth();
     const navigation = useNavigation();
-   
+    
+    console.log('formref', formRef)
     const onSubmit = useCallback(async(data: LoginFormData): Promise<void> => {
         try{
             formRef.current?.setErrors({});
