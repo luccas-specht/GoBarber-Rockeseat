@@ -20,16 +20,12 @@ const Content = styled.div`
         height: 80px;
     }
 
-    button{
+    svg{
         margin-left: auto;
-        background: transparent;
-        border: 0;
-
-        svg{
-            color: #999591;
-            width: 20px;
-            height: 20px;
-        }
+        color: ${props=> props.theme.colors.grayHard};
+        width: 20px;
+        height: 20px;
+        cursor: pointer;        
     }
 `;
 
