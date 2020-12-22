@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+
+import DayPicker, { DayModifiers } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+
+import { daysNotWorked, daysPt, monthsPt, daysAvailable } from '../../../../constants';
 
 import { Header, CardNextAppointment, CardAppointment } from '../../../components';
-
-import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
 
 import * as SC from './dashboard.style';
 
 const Dashboard =  () => {
    const [selectedDate, setSelectedDate] = useState(new Date());
+
+   const handleDateChange = useCallback((day: Date, dayModifiers: DayModifiers )=> {
+      if(dayModifiers.available){
+         setSelectedDate(day)
+      };
+
+   },[]);
 
    return(
        <>
@@ -62,8 +71,15 @@ const Dashboard =  () => {
             </SC.Schedule>
 
             <SC.Calendar>
-          
-              <DayPicker/>
+              <DayPicker
+               weekdaysShort={daysPt}
+               months={monthsPt}
+               fromMonth={new Date()}
+               disabledDays={daysNotWorked}
+               modifiers={{available: daysAvailable}}
+               selectedDays={selectedDate}
+               onDayClick={handleDateChange}
+              />
             </SC.Calendar>
             
          </SC.Content>
