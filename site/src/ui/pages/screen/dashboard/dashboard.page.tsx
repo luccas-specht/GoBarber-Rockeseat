@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 
 import { Header, CardNextAppointment, CardAppointment } from '../../../components';
 
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+
 import * as SC from './dashboard.style';
 
 const Dashboard =  () => {
-   const [selecteDate, setSelectedDate] = useState<Date>(new Date());
+   const [selectedDate, setSelectedDate] = useState(new Date());
 
    return(
        <>
@@ -58,9 +61,14 @@ const Dashboard =  () => {
 
             </SC.Schedule>
 
-            <SC.Calendar/>
+            <SC.Calendar>
+          
+              <DayPicker/>
+            </SC.Calendar>
+            
          </SC.Content>
       </>
+
    )
 }
 
